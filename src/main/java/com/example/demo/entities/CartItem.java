@@ -10,8 +10,8 @@ import java.util.Set;
 import java.math.BigDecimal;
 
 
-@Table(name = "CART_ITEMS")
 @Entity
+@Table(name = "CART_ITEMS")
 @Getter
 @Setter
 public class CartItem {
@@ -22,7 +22,7 @@ public class CartItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "Vacation_ID")
+    @JoinColumn(name = "Vacation_ID", nullable = false)
     private Vacation vacation;
 
     @ManyToMany
@@ -33,7 +33,7 @@ public class CartItem {
     private Set<Excursion> excursions;
 
     @ManyToOne
-    @JoinColumn(name = "Cart_ID")
+    @JoinColumn(name = "Cart_ID", nullable = false)
     private Cart cart;
 
     @Column(name = "Create_Date")

@@ -10,8 +10,8 @@ import java.util.Set;
 import java.math.BigDecimal;
 
 
-@Table(name = "EXCURSIONS")
 @Entity
+@Table(name = "EXCURSIONS")
 @Getter
 @Setter
 public class Excursion {
@@ -39,7 +39,7 @@ public class Excursion {
     private Date last_update;
     
     @ManyToOne
-    @JoinColumn(name = "Vacation_ID")
+    @JoinColumn(name = "Vacation_ID", nullable = false)
     private Vacation vacation;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "excursions")

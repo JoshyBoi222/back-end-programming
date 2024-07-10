@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.Set;
 
 
-@Table(name = "CUSTOMERS")
 @Entity
+@Table(name = "CUSTOMERS")
 @Getter
 @Setter
 public class Customer {
@@ -47,7 +47,7 @@ public class Customer {
     private Date last_update;
 
     @ManyToOne
-    @JoinColumn(name = "Division_ID")
+    @JoinColumn(name = "Division_ID" , nullable = false)
     private Division division;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy ="customer")

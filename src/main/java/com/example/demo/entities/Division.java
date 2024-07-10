@@ -8,8 +8,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
 import java.util.Set;
 
-@Table (name = "DIVISIONS")
 @Entity
+@Table (name = "DIVISIONS")
 @Getter
 @Setter
 public class Division {
@@ -31,7 +31,7 @@ public class Division {
     private Date last_update;
 
     @ManyToOne
-    @JoinColumn (name = "Country_ID")
+    @JoinColumn (name = "Country_ID", nullable = false)
     private Country country;
 
     @Column(name = "Country_ID")

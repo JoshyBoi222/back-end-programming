@@ -10,8 +10,8 @@ import java.util.Set;
 import java.math.BigDecimal;
 
 
-@Table(name = "CARTS")
 @Entity
+@Table(name = "CARTS")
 @Getter
 @Setter
 public class Cart {
@@ -43,7 +43,7 @@ public class Cart {
     private Date last_update;
 
     @ManyToOne
-    @JoinColumn(name = "Customer_ID")
+    @JoinColumn(name = "Customer_ID", nullable = false)
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy ="cart")
