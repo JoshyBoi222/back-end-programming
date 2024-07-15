@@ -56,11 +56,9 @@ public class Customer {
 
     public void addCart(Cart cart) {
         if (cart != null) {
-            if (carts == null) {
-                carts = new HashSet<>();
-            }
             carts.add(cart);
             cart.setCustomer(this);
+            cart.setStatus(StatusType.ordered);
         }
     }
 

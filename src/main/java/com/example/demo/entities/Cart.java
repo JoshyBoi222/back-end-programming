@@ -52,16 +52,9 @@ public class Cart {
 
     public void addCartItem(CartItem item) {
         if (item != null) {
-            if (cartItem == null) {
-                cartItem = new HashSet<>();
-            }
             cartItem.add(item);
             item.setCart(this);
         }
-    }
-
-    public void setOrderTrackingNumber(String orderTrackingNumber) {
-        this.orderTrackingNumber = orderTrackingNumber;
     }
 
 }
