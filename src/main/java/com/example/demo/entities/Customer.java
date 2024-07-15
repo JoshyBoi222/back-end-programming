@@ -3,6 +3,7 @@ package com.example.demo.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
@@ -21,22 +22,28 @@ public class Customer {
     @Column(name = "Customer_ID")
     private Long id;
 
-    @Column(name = "First_Name")
+    @NotNull
+    @Column(name = "First_Name", nullable = false)
     private String firstName;
 
-    @Column(name = "Last_Name")
+    @NotNull
+    @Column(name = "Last_Name", nullable = false)
     private String lastName;
 
-    @Column(name = "Address")
+    @NotNull
+    @Column(name = "Address", nullable = false)
     private String address;
 
-    @Column(name = "City")
+    @NotNull
+    @Column(name = "City", nullable = false)
     private String city;
 
-    @Column(name = "Postal_Code")
+    @NotNull
+    @Column(name = "Postal_Code", nullable = false)
     private String postal_code;
 
-    @Column(name = "Phone")
+    @NotNull
+    @Column(name = "Phone", nullable = false)
     private String phone;
 
     @Column(name = "Create_Date")

@@ -36,6 +36,10 @@ public class CheckoutServiceImpl implements CheckoutService {
         if (cartItems.isEmpty()) {
             return new PurchaseResponse("Order not purchased: No items in the cart");
         }
+        //check if party size is at least 1
+        if (cart.getParty_size() < 1) {
+            return new PurchaseResponse("Order not purchased: Party size is too low");
+        }
         //generate and set tracking number
         String orderTrackingNumber = generateCartTrackingNumber();
         cart.setOrderTrackingNumber(orderTrackingNumber);
