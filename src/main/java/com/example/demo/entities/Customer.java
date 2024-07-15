@@ -43,6 +43,7 @@ public class Customer {
     private String phone;
 
     @NotNull
+    @Column(name = "city", nullable = false)
     private String city;
 
     @Column(name = "create_date")

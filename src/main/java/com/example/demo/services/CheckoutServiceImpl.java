@@ -34,7 +34,7 @@ public class CheckoutServiceImpl implements CheckoutService {
         Set<CartItem> cartItems = purchase.getCartItems();
         //check if cart is empty and return a message instead of tracking number if it is
         if (cartItems.isEmpty()) {
-            return new PurchaseResponse("Order not purchased: Customer, Cart or Cart Items must not be null");
+            return new PurchaseResponse("Order not purchased: Cart Items must not be empty");
         }
         //check if party size is at least 1
         if (cart.getParty_size() < 1) {
@@ -44,9 +44,6 @@ public class CheckoutServiceImpl implements CheckoutService {
         String orderTrackingNumber = generateCartTrackingNumber();
         cart.setOrderTrackingNumber(orderTrackingNumber);
 
-        //set cart status to ordered
-        cart.setStatus(StatusType.ordered);
-
         //populate cart with items
         for (CartItem cartItem : cartItems) {
             cart.addCartItem(cartItem);
@@ -54,6 +51,9 @@ public class CheckoutServiceImpl implements CheckoutService {
 
         //populate customer with cart
         customer.addCart(cart);
+
+        //set cart status to ordered
+        cart.setStatus(StatusType.ordered);
 
         //save info to database
         customerRepository.save(customer);
