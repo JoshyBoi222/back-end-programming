@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import java.math.BigDecimal;
 
@@ -27,7 +28,7 @@ public class Vacation {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "travel_fare_price   ")
+    @Column(name = "travel_fare_price")
     private BigDecimal travel_price;
 
     @Column(name = "image_url")
@@ -42,7 +43,7 @@ public class Vacation {
     private Date last_update;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacation")
-    private Set<Excursion> excursions;
+    private Set<Excursion> excursions = new HashSet<>();
 
 }
 

@@ -28,7 +28,6 @@ public class CheckoutServiceImpl implements CheckoutService {
     @Override
     @Transactional
     public PurchaseResponse placeOrder(Purchase purchase) {
-
         //get the customer, cart and cart items info
         Customer customer = purchase.getCustomer();
         Cart cart = purchase.getCart();

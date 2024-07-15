@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -37,7 +38,7 @@ public class Division {
     @Column(name = "country_id", insertable = false, updatable = false)
     private Long country_id;
 
-    @OneToMany(mappedBy = "division")
-    private Set<Customer> customers;
+    @OneToMany(cascade =CascadeType.ALL, mappedBy = "division")
+    private Set<Customer> customers = new HashSet<>();
 
 }
