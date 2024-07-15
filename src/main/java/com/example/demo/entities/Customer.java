@@ -42,9 +42,6 @@ public class Customer {
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    @NotNull
-    private String city;
-
     @Column(name = "create_date")
     @CreationTimestamp
     private Date create_date;
