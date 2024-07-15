@@ -11,33 +11,33 @@ import java.math.BigDecimal;
 
 
 @Entity
-@Table(name = "VACATIONS")
+@Table(name = "vacations")
 @Getter
 @Setter
 public class Vacation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Vacation_ID")
+    @Column(name = "vacation_id")
     private Long id;
 
-    @Column(name = "Vacation_Title")
+    @Column(name = "vacation_title")
     private String vacation_title;
 
-    @Column(name = "Description")
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "Travel_Fare_Price   ")
+    @Column(name = "travel_fare_price   ")
     private BigDecimal travel_price;
 
-    @Column(name = "Image_URL")
+    @Column(name = "image_url")
     private String image_URL;
 
-    @Column(name = "Create_Date")
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_date;
 
-    @Column(name = "Last_Update")
+    @Column(name = "last_update")
     @UpdateTimestamp
     private Date last_update;
 

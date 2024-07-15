@@ -9,24 +9,24 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table (name = "COUNTRIES")
+@Table (name = "countries")
 @Getter
 @Setter
 public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Country_ID")
+    @Column(name = "country_id")
     private Long id;
 
-    @Column(name = "Country")
+    @Column(name = "country")
     private String country_name;
 
-    @Column(name = "Create_Date")
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_date;
 
-    @Column(name = "Last_Update")
+    @Column(name = "last_update")
     @UpdateTimestamp
     private Date last_update;
 

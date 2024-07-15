@@ -12,50 +12,49 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "CUSTOMERS")
+@Table(name = "customers")
 @Getter
 @Setter
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Customer_ID")
+    @Column(name = "customer_id")
     private Long id;
 
     @NotNull
-    @Column(name = "First_Name", nullable = false)
+    @Column(name = "customer_first_name", nullable = false)
     private String firstName;
 
     @NotNull
-    @Column(name = "Last_Name", nullable = false)
+    @Column(name = "customer_last_name", nullable = false)
     private String lastName;
 
     @NotNull
-    @Column(name = "Address", nullable = false)
+    @Column(name = "address", nullable = false)
     private String address;
 
     @NotNull
-    @Column(name = "City", nullable = false)
-    private String city;
-
-    @NotNull
-    @Column(name = "Postal_Code", nullable = false)
+    @Column(name = "postal_code", nullable = false)
     private String postal_code;
 
     @NotNull
-    @Column(name = "Phone", nullable = false)
+    @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "Create_Date")
+    @NotNull
+    private String city;
+
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_date;
 
-    @Column(name = "Last_Update")
+    @Column(name = "last_update")
     @UpdateTimestamp
     private Date last_update;
 
     @ManyToOne
-    @JoinColumn(name = "Division_ID" , nullable = false)
+    @JoinColumn(name = "division_id" , nullable = false)
     private Division division;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy ="customer")

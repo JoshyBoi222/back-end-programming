@@ -12,39 +12,39 @@ import java.math.BigDecimal;
 
 
 @Entity
-@Table(name = "CARTS")
+@Table(name = "carts")
 @Getter
 @Setter
 public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Cart_ID")
+    @Column(name = "cart_id")
     private Long id;
 
-    @Column(name = "Order_Tracking_Number")
+    @Column(name = "order_tracking_number")
     private String orderTrackingNumber;
 
-    @Column(name = "Package_Price")
+    @Column(name = "package_price")
     private BigDecimal package_price;
 
-    @Column(name = "Party_Size")
+    @Column(name = "party_size")
     private int party_size;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "Status")
+    @Column(name = "status")
     private StatusType status;
 
-    @Column(name = "Create_Date")
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_date;
 
-    @Column(name = "Last_Update")
+    @Column(name = "last_update")
     @UpdateTimestamp
     private Date last_update;
 
     @ManyToOne
-    @JoinColumn(name = "Customer_ID", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy ="cart")

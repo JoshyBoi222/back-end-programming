@@ -6,44 +6,45 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import java.math.BigDecimal;
 
 
 @Entity
-@Table(name = "EXCURSIONS")
+@Table(name = "excursions")
 @Getter
 @Setter
 public class Excursion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Excursion_ID")
+    @Column(name = "excursion_id")
     private Long id;
 
-    @Column(name = "Excursion_Title")
+    @Column(name = "excursion_title")
     private String excursion_title;
 
-    @Column(name = "Excursion_Price")
+    @Column(name = "excursion_price")
     private BigDecimal excursion_price;
 
-    @Column(name = "Image_URL")
+    @Column(name = "image_url")
     private String image_URL;
 
-    @Column(name = "Create_Date")
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_date;
 
-    @Column(name = "Last_Update")
+    @Column(name = "last_update")
     @UpdateTimestamp
     private Date last_update;
     
     @ManyToOne
-    @JoinColumn(name = "Vacation_ID", nullable = false)
+    @JoinColumn(name = "vacation_id", nullable = false)
     private Vacation vacation;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "excursions")
-    private Set<CartItem> cartitems;
+    private Set<CartItem> cartitems = new HashSet<>();
 
 }
 
