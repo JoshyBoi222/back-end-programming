@@ -5,6 +5,7 @@ import com.example.demo.dao.CustomerRepository;
 import com.example.demo.entities.Cart;
 import com.example.demo.entities.CartItem;
 import com.example.demo.entities.Customer;
+import com.example.demo.entities.StatusType;
 import com.example.demo.services.Purchase;
 import com.example.demo.services.PurchaseResponse;
 import jakarta.transaction.Transactional;
@@ -43,6 +44,9 @@ public class CheckoutServiceImpl implements CheckoutService {
         //generate and set tracking number
         String orderTrackingNumber = generateCartTrackingNumber();
         cart.setOrderTrackingNumber(orderTrackingNumber);
+
+        //set cart status to ordered
+        cart.setStatus(StatusType.ordered);
 
         //populate cart with items
         cartItems.forEach(cart::addCartItem);

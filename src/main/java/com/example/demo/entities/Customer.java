@@ -65,7 +65,6 @@ public class Customer {
         if (cart != null) {
             carts.add(cart);
             cart.setCustomer(this);
-            cart.setStatus(StatusType.ordered);
         }
     }
 
