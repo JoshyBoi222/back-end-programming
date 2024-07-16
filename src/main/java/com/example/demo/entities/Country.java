@@ -1,7 +1,9 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -11,8 +13,11 @@ import java.util.Set;
 
 @Entity
 @Table (name = "countries")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
+
 public class Country {
 
     @Id

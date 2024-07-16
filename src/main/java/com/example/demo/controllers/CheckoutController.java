@@ -13,9 +13,8 @@ public class CheckoutController {
     private CheckoutService checkoutService;
    @Autowired
    public CheckoutController(CheckoutService checkoutService) {
-        this.checkoutService = checkoutService;
+       this.checkoutService = checkoutService;
     }
-
     @PostMapping("/purchase")
     public PurchaseResponse placeOrder(@RequestBody Purchase purchase) {
         PurchaseResponse purchaseResponse = checkoutService.placeOrder(purchase);

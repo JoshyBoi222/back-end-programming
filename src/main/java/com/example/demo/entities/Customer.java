@@ -1,6 +1,8 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -13,6 +15,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "customers")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Customer {
@@ -22,29 +26,20 @@ public class Customer {
     @Column(name = "customer_id")
     private Long id;
 
-    @NotNull
     @Column(name = "customer_first_name", nullable = false)
     private String firstName;
 
-    @NotNull
     @Column(name = "customer_last_name", nullable = false)
     private String lastName;
 
-    @NotNull
     @Column(name = "address", nullable = false)
     private String address;
 
-    @NotNull
     @Column(name = "postal_code", nullable = false)
     private String postal_code;
 
-    @NotNull
     @Column(name = "phone", nullable = false)
     private String phone;
-
-    @NotNull
-    @Column(name = "city", nullable = false)
-    private String city;
 
     @Column(name = "create_date")
     @CreationTimestamp

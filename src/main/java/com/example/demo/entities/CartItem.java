@@ -1,6 +1,8 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,6 +15,8 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "cart_items")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class CartItem {
@@ -26,14 +30,15 @@ public class CartItem {
     @JoinColumn(name = "vacation_id", nullable = false)
     private Vacation vacation;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "excursion_cartitem", joinColumns = @JoinColumn(name = "cart_item_id"),
-            inverseJoinColumns = @JoinColumn(name = "excursion_id"))
-    private Set<Excursion> excursions = new HashSet<>();
-
     @ManyToOne
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "excursion_cartitem",
+            joinColumns = @JoinColumn(name = "cart_item_id"),
+            inverseJoinColumns = @JoinColumn(name = "excursion_id"))
+    private Set<Excursion> excursions = new HashSet<>();
 
     @Column(name = "create_date")
     @CreationTimestamp
