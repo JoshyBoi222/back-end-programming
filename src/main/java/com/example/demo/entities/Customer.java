@@ -21,6 +21,15 @@ import java.util.Set;
 @Setter
 public class Customer {
 
+    public Customer(String firstName, String lastName, String address, String postal_code, String phone, Division division) {
+        this.division = division;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.postal_code = postal_code;
+        this.phone = phone;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
