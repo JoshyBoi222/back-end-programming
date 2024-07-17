@@ -25,8 +25,6 @@ public class Division {
     @Column(name = "division_id")
     private Long id;
 
-    private Long country_id;
-
     @Column(name = "division")
     private String division_name;
 
@@ -38,8 +36,8 @@ public class Division {
     @UpdateTimestamp
     private Date last_update;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id", nullable = false, insertable = false, updatable = false)
+    @ManyToOne
+    @JoinColumn(name = "country_id")
     private Country country;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "division")

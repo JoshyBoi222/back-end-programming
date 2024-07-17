@@ -56,6 +56,9 @@ public class Cart {
 
     public void addCartItem(CartItem item) {
         if (item != null) {
+            if (cartItems == null) {
+                cartItems = new HashSet<>();
+            }
             cartItems.add(item);
             item.setCart(this);
         }
