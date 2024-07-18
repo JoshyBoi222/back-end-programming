@@ -11,8 +11,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.math.BigDecimal;
-
-
 @Entity
 @Table(name = "carts")
 @NoArgsConstructor
@@ -26,7 +24,7 @@ public class Cart {
     @Column(name = "cart_id")
     private Long id;
 
-    @Column(name = "order_tracking_number")
+    @Column(name = "order_tracking_number", nullable = false)
     private String orderTrackingNumber;
 
     @Column(name = "package_price")
@@ -50,11 +48,9 @@ public class Cart {
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy ="cart")
     private Set<CartItem> cartItems = new HashSet<>();
-
-    public void addCartItem(CartItem item) {
+    public void add(CartItem item) {
         if (item != null) {
             if (cartItems == null) {
                 cartItems = new HashSet<>();

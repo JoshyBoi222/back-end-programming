@@ -10,14 +10,12 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 @Entity
 @Table (name = "divisions")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-
 public class Division {
 
     @Id
@@ -35,7 +33,6 @@ public class Division {
     @Column(name = "last_update")
     @UpdateTimestamp
     private Date last_update;
-
     @ManyToOne
     @JoinColumn(name = "country_id", nullable = false, insertable = false, updatable = false)
     private Country country;

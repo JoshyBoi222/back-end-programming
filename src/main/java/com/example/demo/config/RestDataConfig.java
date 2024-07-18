@@ -1,4 +1,4 @@
-package java.com.example.demo.config;
+package com.example.demo.config;
 
 import com.example.demo.entities.*;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +34,8 @@ public class RestDataConfig implements RepositoryRestConfigurer {
      */
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
+        config.exposeIdsFor(Cart.class);
+        config.exposeIdsFor(CartItem.class);
         config.exposeIdsFor(Country.class);
         config.exposeIdsFor(Customer.class);
         config.exposeIdsFor(Division.class);
@@ -41,8 +43,7 @@ public class RestDataConfig implements RepositoryRestConfigurer {
         config.exposeIdsFor(Vacation.class);
         config.setDefaultPageSize(Integer.MAX_VALUE);
         config.setMaxPageSize(Integer.MAX_VALUE);
-
-
     }
+
 }
 

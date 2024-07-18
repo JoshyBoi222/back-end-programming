@@ -10,9 +10,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import java.math.BigDecimal;
-
-
 @Entity
 @Table(name = "cart_items")
 @NoArgsConstructor
@@ -37,7 +34,8 @@ public class CartItem {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "excursion_cartitem",
             joinColumns = @JoinColumn(name = "cart_item_id"),
-            inverseJoinColumns = @JoinColumn(name = "excursion_id"))
+            inverseJoinColumns = @JoinColumn(name = "excursion_id")
+    )
     private Set<Excursion> excursions = new HashSet<>();
 
     @Column(name = "create_date")

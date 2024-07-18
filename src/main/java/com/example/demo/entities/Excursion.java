@@ -11,8 +11,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.math.BigDecimal;
-
-
 @Entity
 @Table(name = "excursions")
 @NoArgsConstructor
@@ -48,7 +46,7 @@ public class Excursion {
     private Vacation vacation;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "excursions")
-    private Set<CartItem> cartitems = new HashSet<>();
+    private Set<CartItem> cartItems = new HashSet<>();
 
 }
 

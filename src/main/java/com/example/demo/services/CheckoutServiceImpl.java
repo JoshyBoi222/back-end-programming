@@ -1,4 +1,5 @@
 package com.example.demo.services;
+
 import com.example.demo.dao.CartItemRepository;
 import com.example.demo.dao.CartRepository;
 import com.example.demo.dao.CustomerRepository;
@@ -17,7 +18,6 @@ public class CheckoutServiceImpl implements CheckoutService {
     private CustomerRepository customerRepository;
     private CartRepository cartRepository;
     private CartItemRepository cartItemRepository;
-
     @Autowired
     public CheckoutServiceImpl(CustomerRepository customerRepository, CartRepository cartRepository, CartItemRepository cartItemRepository) {
         this.customerRepository = customerRepository;
@@ -26,39 +26,42 @@ public class CheckoutServiceImpl implements CheckoutService {
     }
     @Override
     @Transactional
-    public PurchaseResponse placeOrder(Purchase purchase) {
-        // get the cart info
+    public PurchaseResponse checkout(Purchase purchase) {
+
+        // get the cart and cart items
         Cart cart = purchase.getCart();
+        Set <CartItem> cartItems = purchase.getCartItems();
+
+        // check if cart is null or empty before generating tracking number
+        if (cartItems == null || cartItems.isEmpty()) {
+            return new PurchaseResponse("Checkout Error - You Choose Nothing To Buy");
+        }
+
+        // check if party size is at least 1 before generating tracking number
+        if (cart.getParty_size() < 1) {
+            return new PurchaseResponse("Checkout Error - Party Size Must Be At Least 1");
+        }
 
         // generate and set tracking number
         String orderTrackingNumber = generateOrderTrackingNumber();
         cart.setOrderTrackingNumber(orderTrackingNumber);
 
-        // populate cart with items
-        Set <CartItem> cartItems = purchase.getCartItems();
-        cartItems.forEach(item -> cart.addCartItem(item));
-
         // set cart status to ordered
         cart.setStatus(StatusType.ordered);
 
-        // get customer info
+        // populate cart with items
+        cartItems.forEach(item -> cart.add(item));
+
+        // get the customer
         Customer customer = purchase.getCustomer();
-        // save info to database
+
+        // save cart info to database
         cartRepository.save(cart);
+
         // populate customer with cart
-        customer.addCart(cart);
+        customer.add(cart);
 
-        // check if cart is null or empty
-        if (cartItems == null || cartItems.isEmpty()) {
-            return new PurchaseResponse("Order not purchased: Cart Items must not be empty");
-        }
-
-        // check if party size is at least 1
-        if (cart.getParty_size() < 1) {
-            return new PurchaseResponse("Order not purchased: Party size must be 1 or more");
-        }
-
-        // return tracking number
+        // return the order tracking number
         return new PurchaseResponse(orderTrackingNumber);
 
     }
